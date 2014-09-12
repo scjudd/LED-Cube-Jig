@@ -21,10 +21,16 @@ module led_jig(n, r, l, h) {
 					cylinder(h=h, r=r+2);
 					if (x < n-1)
 						translate([0, -1.5])
-							cube([l, 3, h]);
+							difference() {
+								cube([l, 3, h]);
+								translate([0, 1, -1]) cube([l, 1, h]);
+							}
 					if (y < n-1 && (x == 0 || x == n-1))
 						translate([-1.5, 0])
-							cube([3, l, h]);
+							difference() {
+								cube([3, l, h]);
+								translate([1, 0, -1]) cube([1, l, h]);
+							}
 				}
 			}
 		}
@@ -39,7 +45,10 @@ module led_jig(n, r, l, h) {
 	for (y = [0:n-2]) {
 		translate([0.5, y*l+(l*0.5)-2.5, 0]) {
 			difference() {
-				translate([1, 0]) cube([5, 5, h+3]);
+				difference() {
+					translate([1, 0]) cube([5, 5, h+3]);
+					translate([1, 1, -1]) cube([4, 3, h]);
+				}
 				translate([3.5, 6, h+0.5])
 					rotate(a=90, v=[1,0,0]) {
 						translate([-0.5, 0]) cube([1, 3, 7]);
@@ -49,7 +58,10 @@ module led_jig(n, r, l, h) {
 		}
 		translate([l*(n-1)-7.5, y*l+(l*0.5)-2.5, 0]) {
 			difference() {
-				translate([1, 0]) cube([5, 5, h+3]);
+				difference() {
+					translate([1, 0]) cube([5, 5, h+3]);
+					translate([2, 1, -1]) cube([4, 3, h]);
+				}
 				translate([3.5, 6, h+0.5])
 					rotate(a=90, v=[1,0,0]) {
 						translate([-0.5, 0]) cube([1, 3, 7]);
