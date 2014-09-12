@@ -22,7 +22,7 @@ module led_jig(n, r, l, h) {
 					if (x < n-1)
 						translate([0, -1.5])
 							cube([l, 3, h]);
-					if (y < n-1)
+					if (y < n-1 && (x == 0 || x == n-1))
 						translate([-1.5, 0])
 							cube([3, l, h]);
 				}
